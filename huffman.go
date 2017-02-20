@@ -23,9 +23,24 @@ func removeFirstTwo(dataset []datum) ([]datum, []datum) {
 	return dataset, dataset
 }
 
-// search insertion point
-func findInsertionPoint(key int) {
+func getMid(lb int, ub int) int {
+	return (lb + ((ub - lb) / 2)) + 1
+}
 
+// search insertion point
+func findInsertionPoint(key int, lb int, ub int, dataset []datum) int {
+	mid := getMid(lb, ub)
+
+	// while we haven't found the insertion point
+	if !(mid <= 1 || key == dataset[mid].val) {
+		if key < dataset[mid].val {
+			return findInsertionPoint(key, lb, mid, dataset)
+		} else if key > dataset[mid].val {
+			return findInsertionPoint(key, mid+1, ub, dataset)
+		}
+	}
+
+	return mid
 }
 
 // insert new parent's k/v pair
