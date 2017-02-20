@@ -40,20 +40,20 @@ func testMids(dataset []datum, t *testing.T) {
 	rightMid := getMid(getMid(0, len(dataset)), len(dataset))
 
 	if len(dataset)%2 != 0 {
-		if fullMid != 3 {
-			t.Error("Expected ", 3, ", got ", fullMid)
-		} else if leftMid != 2 {
-			t.Error("Expected ", 2, ", got ", leftMid)
-		} else if rightMid != 5 {
-			t.Error("Expected ", 5, ", got ", rightMid)
+		if fullMid != 2 {
+			t.Error("Expected ", 2, ", got ", fullMid)
+		} else if leftMid != 1 {
+			t.Error("Expected ", 1, ", got ", leftMid)
+		} else if rightMid != 3 {
+			t.Error("Expected ", 3, ", got ", rightMid)
 		}
 	} else {
-		if fullMid != 4 {
-			t.Error("Expected ", 4, ", got ", fullMid)
-		} else if leftMid != 3 {
-			t.Error("Expected ", 3, ", got ", leftMid)
-		} else if rightMid != 6 {
-			t.Error("Expected ", 6, ", got ", rightMid)
+		if fullMid != 3 {
+			t.Error("Expected ", 3, ", got ", fullMid)
+		} else if leftMid != 1 {
+			t.Error("Expected ", 1, ", got ", leftMid)
+		} else if rightMid != 4 {
+			t.Error("Expected ", 4, ", got ", rightMid)
 		}
 	}
 }
@@ -66,7 +66,7 @@ func TestGetMid(t *testing.T) {
 }
 
 func testFind(dataset []datum, t *testing.T) {
-	var seven, fourteen, two int
+	var seven, fourteen, two, five int
 	length := len(dataset)
 
 	if len(dataset)%2 == 0 {
@@ -74,13 +74,16 @@ func testFind(dataset []datum, t *testing.T) {
 		seven = findInsertionPoint(7, 0, length, dataset)
 		fourteen = findInsertionPoint(14, 0, length, dataset)
 		two = findInsertionPoint(2, 0, length, dataset)
+		five = findInsertionPoint(5, 0, length, dataset)
 
 		if seven != 2 {
 			t.Error("Expected ", 2, ", got ", seven)
-		} else if fourteen != 5 {
-			t.Error("Expected ", 5, ", got ", fourteen)
+		} else if fourteen != 3 {
+			t.Error("Expected ", 3, ", got ", fourteen)
 		} else if two != 0 {
 			t.Error("Expected ", 0, ", got ", two)
+		} else if five != 1 {
+			t.Error("Expected ", 1, ", got ", five)
 		}
 	}
 }
