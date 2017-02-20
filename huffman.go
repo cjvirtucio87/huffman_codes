@@ -24,7 +24,7 @@ func removeFirstTwo(dataset []datum) ([]datum, []datum) {
 }
 
 func getMid(lb int, ub int) int {
-	return (lb + ((ub - lb) / 2)) + 1
+	return (lb + ((ub - lb) / 2))
 }
 
 // search insertion point
@@ -32,7 +32,7 @@ func findInsertionPoint(key int, lb int, ub int, dataset []datum) int {
 	mid := getMid(lb, ub)
 
 	// while we haven't found the insertion point
-	if !(mid <= 1 || key == dataset[mid].val) {
+	if !((ub-lb) <= 1 || key == dataset[mid].val) {
 		if key < dataset[mid].val {
 			return findInsertionPoint(key, lb, mid, dataset)
 		} else if key > dataset[mid].val {
