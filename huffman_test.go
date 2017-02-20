@@ -15,15 +15,19 @@ var data = []bst.Datum{
 }
 
 func TestRemoveFirstTwo(t *testing.T) {
-	sliced, orig := removeFirstTwo(data)
+	var dataset []bst.Datum
 
-	if sliced[0].Key != rune('a') {
-		t.Error("Expected ", rune('a'), ", got ", sliced[0].Key)
-	} else if sliced[1].Key != rune('b') {
-		t.Error("Expected ", rune('b'), ", got ", sliced[1].Key)
-	} else if len(orig) != 5 {
+	// remove the first two twice
+	firstTwo, dataset := removeFirstTwo(data)
+	_, dataset = removeFirstTwo(dataset)
+
+	if firstTwo[0].Key != rune('a') {
+		t.Error("Expected ", rune('a'), ", got ", firstTwo[0].Key)
+	} else if firstTwo[1].Key != rune('b') {
+		t.Error("Expected ", rune('b'), ", got ", firstTwo[1].Key)
+	} else if len(dataset) != 1 {
 		// must not mutate array pointed to by data
-		t.Error("Expected ", 5, ", got ", len(orig))
+		t.Error("Expected ", 1, ", got ", len(dataset))
 	}
 }
 
