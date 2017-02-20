@@ -4,19 +4,18 @@ import "github.com/cjvirtucio87/bst"
 
 // remove the first two elements of the dataset
 func removeFirstTwo(dataset []bst.Datum) ([]bst.Datum, []bst.Datum) {
-	output := dataset[0:2]
-	return output, dataset
+	if len(dataset) > 2 {
+		output := dataset[0:2]
+		return output, dataset[2:]
+	}
+
+	return dataset, dataset
 }
 
 // search for bst.Node with matching key
 func search(searchKey rune, root *bst.Node) *bst.Node {
-	// base case
-	if root == nil {
-		return root
-	}
-
 	// preorder traversal
-	if searchKey == root.Key {
+	if root == nil || searchKey == root.Key {
 		return root
 	}
 
