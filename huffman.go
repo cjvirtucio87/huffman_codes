@@ -1,9 +1,20 @@
 package huffman
 
-import "github.com/cjvirtucio87/bst"
+type datum struct {
+	key rune
+	val int
+}
+
+type node struct {
+	key    rune
+	val    int
+	parent *node
+	left   *node
+	right  *node
+}
 
 // remove the first two elements of the dataset
-func removeFirstTwo(dataset []bst.Datum) ([]bst.Datum, []bst.Datum) {
+func removeFirstTwo(dataset []datum) ([]datum, []datum) {
 	if len(dataset) > 2 {
 		output := dataset[0:2]
 		return output, dataset[2:]
@@ -12,29 +23,39 @@ func removeFirstTwo(dataset []bst.Datum) ([]bst.Datum, []bst.Datum) {
 	return dataset, dataset
 }
 
-// search for bst.Node with matching key
-func search(searchKey rune, root *bst.Node) *bst.Node {
+// search insertion point
+func findInsertionPoint(key int) {
+
+}
+
+// insert new parent's k/v pair
+// func insertSum(sum) {
+
+// }
+
+// search for node with matching key
+func findNode(searchKey rune, root *node) *node {
 	// preorder traversal
-	if root == nil || searchKey == root.Key {
+	if root == nil || searchKey == root.key {
 		return root
 	}
 
 	// traverse left
-	left := search(searchKey, root.Left)
-	if left != nil && searchKey == left.Key {
+	left := findNode(searchKey, root.left)
+	if left != nil && searchKey == left.key {
 		return left
 	}
 
 	// traverse right
-	right := search(searchKey, root.Right)
-	if right != nil && searchKey == right.Key {
+	right := findNode(searchKey, root.right)
+	if right != nil && searchKey == right.key {
 		return right
 	}
 
 	return nil
 }
 
-// // check if the bst.Datum already has a bst.Node
-// func checkVector(d bst.Datum) bool {
+// // check if the datum already has a node
+// func checkVector(d datum) bool {
 // 	// need to traverse huffman tree
 // }
