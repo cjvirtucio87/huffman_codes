@@ -1,53 +1,41 @@
 package huffman
 
-type node struct {
-	key    rune
-	val    int
-	parent *node
-	left   *node
-	right  *node
-}
-
-type datum struct {
-	// key is the char code for the string
-	key rune
-	val int
-}
+import "github.com/cjvirtucio87/bst"
 
 // remove the first two elements of the dataset
-func removeFirstTwo(dataset []datum) ([]datum, []datum) {
+func removeFirstTwo(dataset []bst.Datum) ([]bst.Datum, []bst.Datum) {
 	output := dataset[0:2]
 	return output, dataset
 }
 
-// search for node with matching key
-func search(searchKey rune, root *node) *node {
+// search for bst.Node with matching key
+func search(searchKey rune, root *bst.Node) *bst.Node {
 	// base case
 	if root == nil {
 		return root
 	}
 
-	// postorder traversal
-	if searchKey == root.key {
+	// preorder traversal
+	if searchKey == root.Key {
 		return root
 	}
 
 	// traverse left
-	left := search(searchKey, root.left)
-	if left != nil && searchKey == left.key {
+	left := search(searchKey, root.Left)
+	if left != nil && searchKey == left.Key {
 		return left
 	}
 
 	// traverse right
-	right := search(searchKey, root.right)
-	if right != nil && searchKey == right.key {
+	right := search(searchKey, root.Right)
+	if right != nil && searchKey == right.Key {
 		return right
 	}
 
 	return nil
 }
 
-// // check if the datum already has a node
-// func checkVector(d datum) bool {
+// // check if the bst.Datum already has a bst.Node
+// func checkVector(d bst.Datum) bool {
 // 	// need to traverse huffman tree
 // }
