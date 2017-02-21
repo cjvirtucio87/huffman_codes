@@ -73,6 +73,21 @@ func findNode(searchKey rune, root *node) *node {
 	return nil
 }
 
+func createParent(nodes []node) node {
+	var acc int
+
+	for _, v := range nodes {
+		acc += v.val
+	}
+
+	return node{
+		val:    acc,
+		parent: nil,
+		left:   nil,
+		right:  nil,
+	}
+}
+
 // // check if the datum already has a node
 // func checkVector(d datum) bool {
 // 	// need to traverse huffman tree
