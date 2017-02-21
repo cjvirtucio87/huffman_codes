@@ -117,6 +117,34 @@ func TestInsert(t *testing.T) {
 	})(d, newData)
 }
 
+func createParent(t *testing.T) {
+	fmt.Println("huffman.createParent should create a new node with the sum of the first two values.")
+
+	firstTwo, _ := removeFirstTwo(data)
+
+	firstTwoNodes := (func(firstTwo []datum) []node {
+		var acc []node
+		for _, v := range firstTwo {
+			acc = append(
+				acc,
+				node{
+					key:    v.key,
+					val:    v.val,
+					parent: nil,
+					left:   nil,
+					right:  nil,
+				},
+			)
+		}
+
+		return acc
+	})(firstTwo)
+
+	if createParent(firstTwoNodes) == nil {
+		t.Error("Expected ", node{}, ", got ", nil)
+	}
+}
+
 // func TestFindNode(t *testing.T) {
 // 	root := bst.CreateTree(data)
 
