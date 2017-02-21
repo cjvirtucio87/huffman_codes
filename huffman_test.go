@@ -73,39 +73,20 @@ func TestGetMid(t *testing.T) {
 }
 
 func testFind(dataset []datum, t *testing.T) {
-	var seven, fourteen, two, five int
 	length := len(dataset)
+	seven := findInsertionPoint(7, 0, length, dataset)
+	fourteen := findInsertionPoint(14, 0, length, dataset)
+	two := findInsertionPoint(2, 0, length, dataset)
+	five := findInsertionPoint(5, 0, length, dataset)
 
-	if len(dataset)%2 == 0 {
-		seven = findInsertionPoint(7, 0, length, dataset)
-		fourteen = findInsertionPoint(14, 0, length, dataset)
-		two = findInsertionPoint(2, 0, length, dataset)
-		five = findInsertionPoint(5, 0, length, dataset)
-
-		if seven != 2 {
-			t.Error("Expected ", 2, ", got ", seven)
-		} else if fourteen != 4 {
-			t.Error("Expected ", 4, ", got ", fourteen)
-		} else if two != 0 {
-			t.Error("Expected ", 0, ", got ", two)
-		} else if five != 1 {
-			t.Error("Expected ", 1, ", got ", five)
-		}
-	} else {
-		seven = findInsertionPoint(7, 0, length, dataset)
-		fourteen = findInsertionPoint(14, 0, length, dataset)
-		two = findInsertionPoint(2, 0, length, dataset)
-		five = findInsertionPoint(5, 0, length, dataset)
-
-		if seven != 2 {
-			t.Error("Expected ", 2, ", got ", seven)
-		} else if fourteen != 4 {
-			t.Error("Expected ", 4, ", got ", fourteen)
-		} else if two != 0 {
-			t.Error("Expected ", 0, ", got ", two)
-		} else if five != 1 {
-			t.Error("Expected ", 1, ", got ", five)
-		}
+	if seven != 2 {
+		t.Error("Expected ", 2, ", got ", seven)
+	} else if fourteen != 4 {
+		t.Error("Expected ", 4, ", got ", fourteen)
+	} else if two != 0 {
+		t.Error("Expected ", 0, ", got ", two)
+	} else if five != 1 {
+		t.Error("Expected ", 1, ", got ", five)
 	}
 }
 
