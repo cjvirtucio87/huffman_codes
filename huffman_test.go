@@ -109,6 +109,26 @@ func TestFindInsertionPoint(t *testing.T) {
 	testFind(evenData, t)
 }
 
+func TestInsert(t *testing.T) {
+	d := datum{key: rune('h'), val: 6}
+	newData := insert(d, 2, data)
+
+	(func(d datum, nd []datum) {
+		fmt.Println("huffman.insert should return a new dataset with increased length.")
+		diff := len(newData) - len(data)
+		if diff != 1 {
+			t.Error("Expected ", 1, ", got ", diff)
+		}
+	})(d, newData)
+
+	(func(d datum, nd []datum) {
+		fmt.Println("huffman.insert should place the datum at the specified index.")
+		if newData[2].val != d.val {
+			t.Error("Expected ", d.val, ", got ", newData[2].val)
+		}
+	})(d, newData)
+}
+
 // func TestFindNode(t *testing.T) {
 // 	root := bst.CreateTree(data)
 
