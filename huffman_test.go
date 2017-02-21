@@ -117,7 +117,7 @@ func TestInsert(t *testing.T) {
 	})(d, newData)
 }
 
-func createParent(t *testing.T) {
+func TestCreateParent(t *testing.T) {
 	fmt.Println("huffman.createParent should create a new node with the sum of the first two values.")
 
 	firstTwo, _ := removeFirstTwo(data)
@@ -140,8 +140,10 @@ func createParent(t *testing.T) {
 		return acc
 	})(firstTwo)
 
-	if createParent(firstTwoNodes) == nil {
-		t.Error("Expected ", node{}, ", got ", nil)
+	parent := createParent(firstTwoNodes)
+
+	if parent.val != 8 {
+		t.Error("Expected ", 8, ", got ", parent.val)
 	}
 }
 
