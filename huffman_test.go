@@ -13,7 +13,7 @@ var data = []datum{
 	{key: rune('e'), val: 30},
 }
 
-var evenData = append(data, datum{key: rune('f'), val: 4})
+var evenData = append(data, datum{key: rune('f'), val: 35})
 
 func TestRemoveFirstTwo(t *testing.T) {
 	fmt.Println("huffman.removeFirstTwo should grab the first two elements in the dataset and return a new dataset without them.")
@@ -70,6 +70,20 @@ func testFind(dataset []datum, t *testing.T) {
 	length := len(dataset)
 
 	if len(dataset)%2 == 0 {
+		seven = findInsertionPoint(7, 0, length, dataset)
+		fourteen = findInsertionPoint(14, 0, length, dataset)
+		two = findInsertionPoint(2, 0, length, dataset)
+		five = findInsertionPoint(5, 0, length, dataset)
+
+		if seven != 2 {
+			t.Error("Expected ", 2, ", got ", seven)
+		} else if fourteen != 4 {
+			t.Error("Expected ", 4, ", got ", fourteen)
+		} else if two != 0 {
+			t.Error("Expected ", 0, ", got ", two)
+		} else if five != 1 {
+			t.Error("Expected ", 1, ", got ", five)
+		}
 	} else {
 		seven = findInsertionPoint(7, 0, length, dataset)
 		fourteen = findInsertionPoint(14, 0, length, dataset)
@@ -78,8 +92,8 @@ func testFind(dataset []datum, t *testing.T) {
 
 		if seven != 2 {
 			t.Error("Expected ", 2, ", got ", seven)
-		} else if fourteen != 3 {
-			t.Error("Expected ", 3, ", got ", fourteen)
+		} else if fourteen != 4 {
+			t.Error("Expected ", 4, ", got ", fourteen)
 		} else if two != 0 {
 			t.Error("Expected ", 0, ", got ", two)
 		} else if five != 1 {
@@ -92,6 +106,7 @@ func TestFindInsertionPoint(t *testing.T) {
 	fmt.Println("huffman.findInsertionPoint should return the proper index for inserting the key.")
 
 	testFind(data, t)
+	testFind(evenData, t)
 }
 
 // func TestFindNode(t *testing.T) {
