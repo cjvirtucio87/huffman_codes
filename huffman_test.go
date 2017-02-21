@@ -16,20 +16,27 @@ var data = []datum{
 var evenData = append(data, datum{key: rune('f'), val: 35})
 
 func TestRemoveFirstTwo(t *testing.T) {
-	fmt.Println("huffman.removeFirstTwo should grab the first two elements in the dataset and return a new dataset without them.")
 	var dataset []datum
 
 	// remove the first two twice
 	firstTwo, dataset := removeFirstTwo(data)
 	_, dataset = removeFirstTwo(dataset)
 
-	if firstTwo[0].key != rune('a') {
-		t.Error("Expected ", rune('a'), ", got ", firstTwo[0].key)
-	} else if firstTwo[1].key != rune('b') {
-		t.Error("Expected ", rune('b'), ", got ", firstTwo[1].key)
-	} else if len(dataset) != 1 {
-		t.Error("Expected ", 1, ", got ", len(dataset))
-	}
+	(func(firstTwo []datum) {
+		fmt.Println("huffman.removeFirstTwo should grab the first two elements in the dataset")
+		if firstTwo[0].key != rune('a') {
+			t.Error("Expected ", rune('a'), ", got ", firstTwo[0].key)
+		} else if firstTwo[1].key != rune('b') {
+			t.Error("Expected ", rune('b'), ", got ", firstTwo[1].key)
+		}
+	})(firstTwo)
+
+	(func(dataset []datum) {
+		fmt.Println("huffman.removeFirstTwo should return the new dataset, less the first two elements.")
+		if len(dataset) != 1 {
+			t.Error("Expected ", 1, ", got ", len(dataset))
+		}
+	})(dataset)
 }
 
 // helper for TestGetMid
