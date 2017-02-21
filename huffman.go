@@ -47,10 +47,9 @@ func findInsertionPoint(key int, lb int, ub int, dataset []datum) int {
 	return lb
 }
 
-// insert new parent's k/v pair
-// func insertSum(sum) {
-
-// }
+func insert(d datum, p int, dataset []datum) []datum {
+	return append(dataset[:p], append([]datum{d}, dataset[p:]...)...)
+}
 
 // search for node with matching key
 func findNode(searchKey rune, root *node) *node {
