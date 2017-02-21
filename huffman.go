@@ -32,15 +32,19 @@ func findInsertionPoint(key int, lb int, ub int, dataset []datum) int {
 	mid := getMid(lb, ub)
 
 	// while we haven't found the insertion point
-	if !((ub-lb) <= 1 || key == dataset[mid].val) {
-		if key < dataset[mid].val {
+	if !((ub - lb) < 2) {
+		if key <= dataset[mid].val {
 			return findInsertionPoint(key, lb, mid, dataset)
 		} else if key > dataset[mid].val {
-			return findInsertionPoint(key, mid+1, ub, dataset)
+			return findInsertionPoint(key, mid, ub, dataset)
 		}
 	}
 
-	return mid
+	if key > dataset[lb].val {
+		return ub
+	}
+
+	return lb
 }
 
 // insert new parent's k/v pair
